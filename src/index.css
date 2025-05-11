@@ -35,19 +35,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -101,4 +94,71 @@
     background-attachment: fixed;
     min-height: 100vh;
   }
+}
+
+@keyframes swim {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(3px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(-2px) rotate(-3deg);
+  }
+  75% {
+    transform: translateX(1px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes bubbles {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes wave {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+
+.animate-swim {
+  animation: swim 3s ease-in-out infinite;
+}
+
+.animate-bubbles {
+  animation: bubbles 3s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 20s linear infinite;
+}
+
+.bg-water-pattern {
+  background-image: url("/img/water-pattern.svg");
+  background-repeat: repeat;
+}
+
+.bg-wave-pattern {
+  background-image: url("/img/wave-pattern.svg");
+  background-repeat: repeat-x;
+}
+
+.bg-ocean-gradient {
+  background: linear-gradient(to bottom, #10304f, #0f85a3, #10304f);
 }

@@ -8,9 +8,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Icon from "@/components/ui/icon";
+import UserProfileMenu from "@/components/UserProfileMenu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,10 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
     <header
@@ -124,15 +130,25 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4">
             <div className="hidden md:flex items-center space-x-3">
-              <Button
-                variant="outline"
-                className="border-teender-accent text-teender-accent hover:bg-teender-accent/10"
-              >
-                Вход
-              </Button>
-              <Button className="bg-gradient-to-r from-teender-accent to-teender-accent/80 hover:opacity-90 transition-opacity">
-                Регистрация
-              </Button>
+              {isLoggedIn ? (
+                <UserProfileMenu />
+              ) : (
+                <>
+                  <Button
+                    variant="outline"
+                    className="border-teender-accent text-teender-accent hover:bg-teender-accent/10"
+                    onClick={handleLogin}
+                  >
+                    Вход
+                  </Button>
+                  <Button
+                    className="bg-gradient-to-r from-teender-accent to-teender-accent/80 hover:opacity-90 transition-opacity"
+                    onClick={handleLogin}
+                  >
+                    Регистрация
+                  </Button>
+                </>
+              )}
             </div>
 
             <DropdownMenu>
@@ -201,6 +217,13 @@ const Navbar = () => {
                     </a>
                   </div>
 
+                  {isLoggedIn && (
+                    <div className="bg-teender-primary/10 rounded-md p-3 mb-4 flex items-center justify-between">
+                      <span className="text-sm text-gray-300">Баланс:</span>
+                      <span className="font-bold text-teender-accent">0 ₽</span>
+                    </div>
+                  )}
+
                   <nav className="flex flex-col space-y-4">
                     <a
                       href="#"
@@ -235,15 +258,54 @@ const Navbar = () => {
                   </nav>
 
                   <div className="mt-auto py-6 flex flex-col space-y-3">
-                    <Button
-                      variant="outline"
-                      className="border-teender-accent text-teender-accent hover:bg-teender-accent/10 w-full"
-                    >
-                      Вход
-                    </Button>
-                    <Button className="bg-gradient-to-r from-teender-accent to-teender-accent/80 hover:opacity-90 transition-opacity w-full">
-                      Регистрация
-                    </Button>
+                    {isLoggedIn ? (
+                      <>
+                        <Button
+                          variant="outline"
+                          className="border-teender-accent text-teender-accent hover:bg-teender-accent/10 w-full"
+                          onClick={() => {
+                            /* Действие пополнения */
+                          }}
+                        >
+                          <Icon name="PlusCircle" className="mr-2" size={16} />
+                          Пополнить счет
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="border-teender-primary text-teender-primary hover:bg-teender-primary/10 w-full"
+                          onClick={() => {
+                            /* Действие вывода */
+                          }}
+                        >
+                          <Icon name="MinusCircle" className="mr-2" size={16} />
+                          Вывести средства
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="border-destructive/50 text-destructive hover:bg-destructive/10 w-full"
+                          onClick={() => setIsLoggedIn(false)}
+                        >
+                          <Icon name="LogOut" className="mr-2" size={16} />
+                          Выйти
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          variant="outline"
+                          className="border-teender-accent text-teender-accent hover:bg-teender-accent/10 w-full"
+                          onClick={handleLogin}
+                        >
+                          Вход
+                        </Button>
+                        <Button
+                          className="bg-gradient-to-r from-teender-accent to-teender-accent/80 hover:opacity-90 transition-opacity w-full"
+                          onClick={handleLogin}
+                        >
+                          Регистрация
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </div>
               </SheetContent>
