@@ -1,16 +1,13 @@
+import { defineConfig } from "tailwindcss";
 
-import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
-
-const config = {
+export default defineConfig({
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -67,7 +64,7 @@ const config = {
             DEFAULT: "hsl(var(--sidebar-accent))",
             foreground: "hsl(var(--sidebar-accent-foreground))",
           },
-        }
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -88,12 +85,12 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      // Find section: Add font family
       fontFamily: {
-        playfair: ['Playfair Display', ...fontFamily.serif],
+        playfair: ['"Playfair Display"', "serif"],
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
-} satisfies Config;
-
-export default config;
+  // ... keep existing plugins ...
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+});

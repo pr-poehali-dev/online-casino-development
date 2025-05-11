@@ -1,39 +1,43 @@
-
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Icon from '@/components/ui/icon';
+import Icon from "@/components/ui/icon";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Navbar from '@/components/Navbar';
-import HeroBanner from '@/components/HeroBanner';
-import GameCard from '@/components/GameCard';
+import Navbar from "@/components/Navbar";
+import HeroBanner from "@/components/HeroBanner";
+import GameCard from "@/components/GameCard";
+import SlotCard from "@/components/SlotCard";
 
 const popularGames = [
   {
     id: 1,
     title: "Золото Фараона",
-    image: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070&auto=format&fit=crop",
     provider: "Вулкан",
     rating: 4.8,
   },
   {
     id: 2,
     title: "Космические Приключения",
-    image: "https://images.unsplash.com/photo-1614729375290-b2a429dac01d?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1614729375290-b2a429dac01d?q=80&w=2070&auto=format&fit=crop",
     provider: "Мульти",
     rating: 4.5,
   },
   {
     id: 3,
     title: "Дикий Запад",
-    image: "https://images.unsplash.com/photo-1605870445919-838d190e8e1b?q=80&w=2072&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1605870445919-838d190e8e1b?q=80&w=2072&auto=format&fit=crop",
     provider: "Фортуна",
     rating: 4.9,
   },
   {
     id: 4,
     title: "Тропический Рай",
-    image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4814?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1596838132731-3301c3fd4814?q=80&w=2070&auto=format&fit=crop",
     provider: "Вулкан",
     rating: 4.6,
   },
@@ -43,30 +47,93 @@ const newGames = [
   {
     id: 5,
     title: "Мистический Лес",
-    image: "https://images.unsplash.com/photo-1525824236856-8c0a31dfe3be?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1525824236856-8c0a31dfe3be?q=80&w=2070&auto=format&fit=crop",
     provider: "Фортуна",
     rating: 4.7,
   },
   {
     id: 6,
     title: "Сокровища Пиратов",
-    image: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2071&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2071&auto=format&fit=crop",
     provider: "Мульти",
     rating: 4.4,
   },
   {
     id: 7,
     title: "Вечерний Лас-Вегас",
-    image: "https://images.unsplash.com/photo-1581112877330-5584a0e9d998?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1581112877330-5584a0e9d998?q=80&w=2070&auto=format&fit=crop",
     provider: "Вулкан",
     rating: 4.8,
   },
   {
     id: 8,
     title: "Магия Драконов",
-    image: "https://images.unsplash.com/photo-1610070835223-0e08ba519e4d?q=80&w=2070&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1610070835223-0e08ba519e4d?q=80&w=2070&auto=format&fit=crop",
     provider: "Фортуна",
     rating: 4.9,
+  },
+];
+
+// Find section: Add popular slots data
+const popularSlots = [
+  {
+    id: 1,
+    title: "Book of Ra Deluxe",
+    image:
+      "https://images.unsplash.com/photo-1596838132731-3301c3fd4814?q=80&w=2070&auto=format&fit=crop",
+    provider: "Novomatic",
+    volatility: "Высокая",
+    rtp: "95.5%",
+  },
+  {
+    id: 2,
+    title: "Starburst",
+    image:
+      "https://images.unsplash.com/photo-1611323353473-049b7a3e9a4b?q=80&w=2070&auto=format&fit=crop",
+    provider: "NetEnt",
+    volatility: "Низкая",
+    rtp: "96.1%",
+  },
+  {
+    id: 3,
+    title: "Gonzo's Quest",
+    image:
+      "https://images.unsplash.com/photo-1596047913969-6122ea283f77?q=80&w=2070&auto=format&fit=crop",
+    provider: "NetEnt",
+    volatility: "Средняя",
+    rtp: "96.0%",
+  },
+  {
+    id: 4,
+    title: "Dead or Alive 2",
+    image:
+      "https://images.unsplash.com/photo-1559350370-bbe0ac6ec18c?q=80&w=2070&auto=format&fit=crop",
+    provider: "NetEnt",
+    volatility: "Очень высокая",
+    rtp: "96.8%",
+  },
+  {
+    id: 5,
+    title: "Fruit Cocktail",
+    image:
+      "https://images.unsplash.com/photo-1564869733964-5cc316ae5fb0?q=80&w=2070&auto=format&fit=crop",
+    provider: "Igrosoft",
+    volatility: "Средняя",
+    rtp: "95.0%",
+  },
+  {
+    id: 6,
+    title: "Mega Moolah",
+    image:
+      "https://images.unsplash.com/photo-1605870445919-838d190e8e1b?q=80&w=2072&auto=format&fit=crop",
+    provider: "Microgaming",
+    volatility: "Средняя",
+    rtp: "88.1%",
+    jackpot: true,
   },
 ];
 
@@ -76,10 +143,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#1A1F2C] text-white flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow">
         <HeroBanner />
-        
+
         <div className="container mx-auto py-12 px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-playfair font-bold">Наши игры</h2>
@@ -88,47 +155,83 @@ const Index = () => {
               Поиск игр
             </Button>
           </div>
-          
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
             <TabsList className="mb-8 bg-[#222222] border-b border-[#333333] w-full justify-start">
-              <TabsTrigger value="popular" className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]">
+              <TabsTrigger
+                value="popular"
+                className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]"
+              >
                 Популярные
               </TabsTrigger>
-              <TabsTrigger value="new" className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]">
+              <TabsTrigger
+                value="new"
+                className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]"
+              >
                 Новинки
               </TabsTrigger>
-              <TabsTrigger value="bonuses" className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]">
+              <TabsTrigger
+                value="slots"
+                className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]"
+              >
+                Слоты
+              </TabsTrigger>
+              <TabsTrigger
+                value="bonuses"
+                className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]"
+              >
                 Бонусы
               </TabsTrigger>
-              <TabsTrigger value="tournaments" className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]">
+              <TabsTrigger
+                value="tournaments"
+                className="text-lg px-6 py-3 data-[state=active]:text-[#9b87f5] data-[state=active]:border-b-2 data-[state=active]:border-[#9b87f5]"
+              >
                 Турниры
               </TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="popular" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {popularGames.map(game => (
+                {popularGames.map((game) => (
                   <GameCard key={game.id} game={game} />
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="new" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {newGames.map(game => (
+                {newGames.map((game) => (
                   <GameCard key={game.id} game={game} />
                 ))}
               </div>
             </TabsContent>
-            
+
+            {/* Find section: Add slots tab content */}
+            <TabsContent value="slots" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {popularSlots.map((slot) => (
+                  <SlotCard key={slot.id} slot={slot} />
+                ))}
+              </div>
+            </TabsContent>
+
             <TabsContent value="bonuses" className="mt-0">
               <div className="p-8 text-center">
                 <Card className="bg-[#222222] border-[#333333]">
                   <CardHeader>
-                    <CardTitle className="text-center text-2xl font-playfair">Бонусная программа</CardTitle>
+                    <CardTitle className="text-center text-2xl font-playfair">
+                      Бонусная программа
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="mb-4">Зарегистрируйтесь сейчас и получите эксклюзивные бонусы для новых игроков!</p>
+                    <p className="mb-4">
+                      Зарегистрируйтесь сейчас и получите эксклюзивные бонусы
+                      для новых игроков!
+                    </p>
                     <Button className="bg-gradient-to-r from-[#FEC6A1] to-[#FDE1D3] text-[#1A1F2C] hover:opacity-90 transition-opacity font-medium">
                       Получить бонус
                     </Button>
@@ -136,15 +239,20 @@ const Index = () => {
                 </Card>
               </div>
             </TabsContent>
-            
+
             <TabsContent value="tournaments" className="mt-0">
               <div className="p-8 text-center">
                 <Card className="bg-[#222222] border-[#333333]">
                   <CardHeader>
-                    <CardTitle className="text-center text-2xl font-playfair">Ближайшие турниры</CardTitle>
+                    <CardTitle className="text-center text-2xl font-playfair">
+                      Ближайшие турниры
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="mb-4">Участвуйте в захватывающих турнирах и выигрывайте ценные призы!</p>
+                    <p className="mb-4">
+                      Участвуйте в захватывающих турнирах и выигрывайте ценные
+                      призы!
+                    </p>
                     <Button className="bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] hover:opacity-90 transition-opacity">
                       Смотреть турниры
                     </Button>
@@ -153,7 +261,62 @@ const Index = () => {
               </div>
             </TabsContent>
           </Tabs>
-          
+
+          {/* Find section: Add popular slots section */}
+          <div className="mt-16">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-playfair font-bold">
+                Популярные слоты
+              </h2>
+              <Button
+                variant="outline"
+                className="border-[#9b87f5] text-[#9b87f5] hover:bg-[#9b87f5]/10"
+              >
+                Смотреть все
+                <Icon name="ArrowRight" className="ml-2" />
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {popularSlots.map((slot) => (
+                <div
+                  key={slot.id}
+                  className="relative group overflow-hidden rounded-md"
+                >
+                  <img
+                    src={slot.image}
+                    alt={slot.title}
+                    className="w-full aspect-[3/4] object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs bg-[#9b87f5] px-2 py-0.5 rounded text-white">
+                        {slot.provider}
+                      </span>
+                      {slot.jackpot && (
+                        <span className="text-xs bg-[#FEC6A1] px-2 py-0.5 rounded text-[#1A1F2C] font-medium animate-pulse">
+                          ДЖЕКПОТ
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-sm font-bold text-white truncate">
+                      {slot.title}
+                    </h3>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button
+                      className="bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] hover:opacity-90 transition-opacity"
+                      size="sm"
+                    >
+                      Играть
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="bg-gradient-to-br from-[#222433] to-[#1A1F2C] border border-[#333333] shadow-lg hover:shadow-xl transition-shadow">
@@ -162,63 +325,104 @@ const Index = () => {
                     <div className="w-12 h-12 bg-[#9b87f5] rounded-full flex items-center justify-center">
                       <Icon name="Shield" size={24} />
                     </div>
-                    <h3 className="ml-4 text-xl font-playfair font-bold">Безопасность</h3>
+                    <h3 className="ml-4 text-xl font-playfair font-bold">
+                      Безопасность
+                    </h3>
                   </div>
-                  <p className="text-gray-300">Мы гарантируем полную безопасность ваших данных и финансов.</p>
+                  <p className="text-gray-300">
+                    Мы гарантируем полную безопасность ваших данных и финансов.
+                  </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-gradient-to-br from-[#222433] to-[#1A1F2C] border border-[#333333] shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-[#FEC6A1] rounded-full flex items-center justify-center">
-                      <Icon name="Banknote" size={24} className="text-[#1A1F2C]" />
+                      <Icon
+                        name="Banknote"
+                        size={24}
+                        className="text-[#1A1F2C]"
+                      />
                     </div>
-                    <h3 className="ml-4 text-xl font-playfair font-bold">Быстрые выплаты</h3>
+                    <h3 className="ml-4 text-xl font-playfair font-bold">
+                      Быстрые выплаты
+                    </h3>
                   </div>
-                  <p className="text-gray-300">Получайте свои выигрыши в кратчайшие сроки без задержек.</p>
+                  <p className="text-gray-300">
+                    Получайте свои выигрыши в кратчайшие сроки без задержек.
+                  </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-gradient-to-br from-[#222433] to-[#1A1F2C] border border-[#333333] shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-[#6E59A5] rounded-full flex items-center justify-center">
-                      <Icon name="HeadphonesIcon" size={24} fallback="Headphones" />
+                      <Icon
+                        name="HeadphonesIcon"
+                        size={24}
+                        fallback="Headphones"
+                      />
                     </div>
-                    <h3 className="ml-4 text-xl font-playfair font-bold">Поддержка 24/7</h3>
+                    <h3 className="ml-4 text-xl font-playfair font-bold">
+                      Поддержка 24/7
+                    </h3>
                   </div>
-                  <p className="text-gray-300">Наша служба поддержки всегда готова помочь вам в любое время суток.</p>
+                  <p className="text-gray-300">
+                    Наша служба поддержки всегда готова помочь вам в любое время
+                    суток.
+                  </p>
                 </CardContent>
               </Card>
             </div>
           </div>
         </div>
       </main>
-      
+
       <footer className="bg-[#15171E] py-8 px-4 border-t border-[#333333]">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4 font-playfair">Fortune Casino</h3>
-              <p className="text-gray-400">Лучшее онлайн-казино с большим выбором игр и щедрыми бонусами.</p>
+              <h3 className="text-xl font-bold mb-4 font-playfair">
+                Fortune Casino
+              </h3>
+              <p className="text-gray-400">
+                Лучшее онлайн-казино с большим выбором игр и щедрыми бонусами.
+              </p>
             </div>
             <div>
               <h4 className="text-lg font-medium mb-4">Игры</h4>
               <ul className="space-y-2 text-gray-400">
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Слоты</li>
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Рулетка</li>
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Блэкджек</li>
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Покер</li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Слоты
+                </li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Рулетка
+                </li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Блэкджек
+                </li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Покер
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="text-lg font-medium mb-4">Информация</h4>
               <ul className="space-y-2 text-gray-400">
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">О нас</li>
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Правила и условия</li>
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Ответственная игра</li>
-                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">Политика конфиденциальности</li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  О нас
+                </li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Правила и условия
+                </li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Ответственная игра
+                </li>
+                <li className="hover:text-[#9b87f5] cursor-pointer transition-colors">
+                  Политика конфиденциальности
+                </li>
               </ul>
             </div>
             <div>
