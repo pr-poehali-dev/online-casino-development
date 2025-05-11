@@ -8,7 +8,7 @@ import { popularGames, newGames, popularSlots } from "@/data/gameData";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#1A1F2C] text-white flex flex-col">
+    <div className="min-h-screen bg-ocean-gradient text-white flex flex-col relative">
       <Navbar />
 
       <main className="flex-grow">

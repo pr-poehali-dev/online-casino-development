@@ -97,5 +97,8 @@
 
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(to bottom, #10304f, #0f85a3, #10304f);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
